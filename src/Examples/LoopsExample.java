@@ -60,9 +60,13 @@ public class LoopsExample {
         int quotient = 5 / 2;
         
         // both must be true in order to perform this action
-        if (chu.frontIsClear() && chu.canPickThing()
+        if (chu.frontIsClear() && chu.canPickThing()){
+            
+        }
         
         // only one needs to be true to perform this action
-        if (chu.frontIsClear() || chu.canPickThing()
+        if (chu.frontIsClear() || chu.canPickThing()){
+            
+        }
 }
 }

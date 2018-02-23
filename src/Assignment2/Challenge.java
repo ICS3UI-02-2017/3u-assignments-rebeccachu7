@@ -115,9 +115,15 @@ public class Challenge {
             timmy.turnLeft();
         
         if (!timmy.frontIsClear())
+            timmy.turnAround();
             timmy.turnLeft();
+            timmy.move();
             timmy.turnLeft();
-            timmy.turnLeft();
+       
+        if (timmy.canPickThing())
+            timmy.pickThing();
+            
+        if (timmy.frontIsClear())
             timmy.move();
 }
 }
