@@ -35,7 +35,7 @@ public class A3Q1 {
         new Wall (kw, 2, 2, Direction.SOUTH);
         new Wall (kw, 2, 2, Direction.EAST);
         
-        // use a for loop to move
+        // use a loop to move around the square
         int numberOfLaps = 2;
             while (numberOfLaps > 0){
                 chu.move(2);
@@ -43,7 +43,11 @@ public class A3Q1 {
                 chu.move(3);
                 chu.turnLeft();
                 chu.move(3);
-                
+                chu.turnLeft();
+                chu.move(3);
+                chu.turnLeft();
+                chu.move();
+        numberOfLaps = numberOfLaps - 1;
             }
         
 }
