@@ -27,7 +27,7 @@ public class UbbiDubbiExample {
             // sanitize the input
             origWord = origWord.toLowerCase();
             
-            // do we statr with a vowel?
+            // do we start with a vowel?
             if (origWord.startsWith("a") ||
                 origWord.startsWith("e") ||
                 origWord.startsWith("i") ||
