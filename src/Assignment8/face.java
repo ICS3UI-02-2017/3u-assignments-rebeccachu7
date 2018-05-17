@@ -26,12 +26,12 @@ public class face extends JComponent implements ActionListener {
     static final int HEIGHT = 1000;
 
     //Title of the window
-    String title = "My Game";
+    String title = "Omar I";
 
     // sets the framerate and delay for our game
     // this calculates the number of milliseconds per frame
     // you just need to select an approproate framerate
-    int desiredFPS = 60;
+    int desiredFPS = 7;
     int desiredTime = Math.round((1000 / desiredFPS));
     
     // timer used to run the game loop
@@ -40,25 +40,26 @@ public class face extends JComponent implements ActionListener {
 
     // YOUR GAME VARIABLES WOULD GO HERE
     
-    // the amount of red, blue, and green in a colour created -> brown (Omar's skin tone)
+    // create the colour of Omar's skin
     Color omar = new Color(175, 105, 40);
-    
+    // create the colour of his eyes
     Color eye = new Color(61, 31, 3);
-    
+    // create the colour of his lips
     Color lips = new Color (209, 110, 130);
+    // create the yellow colour of the crown
+    Color crown = new Color (247, 207, 29);
     
-    int pacmanX = 100;
-    int pacmanY = 400;
     
-    int pacmanAngle = 45;
-    int pacmanRotate = 270;
-    boolean pacmanClose = true;
+    // move whites of the eyes from side to side
+    int whiteRight = 210;
+    int whiteLeft = 350;
     
-    int mouseX = 0;
-    int mouseY = 0;
-    
-    boolean moveUp = false;
-    boolean moveDown = false;
+    // move the eyebrows up and down
+    int eyebrowMove = 150;
+    // move the mustache up and down
+    int mustache = 590;
+    // move the tongue up and down
+    int tongue = 700;
 
     // GAME VARIABLES END HERE    
 
@@ -118,7 +119,40 @@ public class face extends JComponent implements ActionListener {
         g.setColor(Color.BLACK);
         g.drawOval(100, 75, 400, 800);
         
+        // make a crown on the top of the head
+        g.setColor(crown);
+        
+        // create triangles for the crown
+        int[] crownA = {245, 265, 285};
+        int[] crownB = {75, 25, 75};
+        // array of X points, array of Y points, number of points
+        g.fillPolygon(crownA, crownB, 3);
+        
+        int[] crownC = {280, 300, 320};
+        int[] crownD = {75, 10, 75};
+        g.fillPolygon(crownC, crownD, 3);
+        
+        int[] crownE = {315, 335, 355};
+        int[] crownF = {75, 25, 75};
+        g.fillPolygon(crownE, crownF, 3);
+        
+        // create the gems on the crown
+        // Set colour as magenta
+        g.setColor(Color.MAGENTA);
+        int[] shimmerA = {258, 263, 268, 263};
+        int[] shimmerB = {60, 50, 60, 70};
+        g.fillPolygon(shimmerA, shimmerB, 4);
+        
+        int[] shimmerC = {295, 300, 305, 300};
+        int[] shimmerD = {60, 50, 60, 70};
+        g.fillPolygon(shimmerC, shimmerD, 4);
+        
+        int[] shimmerE = {330, 335, 340, 335};
+        int[] shimmerF = {60, 50, 60, 70};
+        g.fillPolygon(shimmerE, shimmerF, 4);
+        
         // create the ears of the face
+        // set colour back to Omar's skin tone
         g.setColor(omar);
         g.fillOval(65, 400, 100, 200);
         g.fillOval(440, 400, 100, 200);
@@ -127,15 +161,11 @@ public class face extends JComponent implements ActionListener {
         //x, y, width, length, starting degrees, added degrees to starting degrees
         g.drawArc(65, 400, 100, 200, 90, 180);
         g.drawArc(440, 400, 100, 200, 270, 180);
-        
         // create the lines of where the ears end
-        // set the colour as black
-        g.setColor(Color.BLACK);
-        //x, y, width, length, starting degrees, added degrees to starting degrees
         g.drawArc(85, 450, 50, 100, 90, 180);
         g.drawArc(465, 450, 50, 100, 270, 180);
         
-        // set the colours of the eyes as black
+        // set the colours of the eyes
         g.setColor(eye);
         // make the eyes of the face
         g.fillOval(200, 320, 50, 50);
@@ -143,21 +173,20 @@ public class face extends JComponent implements ActionListener {
         // set the shine in the eyes as white
         g.setColor(Color.WHITE);
         // create the circles
-        g.fillOval(210, 330, 15, 15);
-        g.fillOval(350, 330, 15, 15);
+        g.fillOval(whiteRight, 330, 15, 15);
+        g.fillOval(whiteLeft, 330, 15, 15);
         
         // set the colour of the eyebrows as red
         g.setColor(Color.RED);
         // draw a filled in rectangle
         // x, y, width, height
-        g.fillRect(160, 150, 100, 50);
-        g.fillRect(330, 150, 100, 50);
-        
+        g.fillRect(160, eyebrowMove, 100, 50);
+        g.fillRect(330, eyebrowMove, 100, 50);
         // outline the eyebrows
         // set the colour as black
         g.setColor(Color.BLACK);
-        g.drawRect(160, 150, 100, 50);
-        g.drawRect(330, 150, 100, 50);
+        g.drawRect(160, eyebrowMove, 100, 50);
+        g.drawRect(330, eyebrowMove, 100, 50);
         
         //make the nose of the face
         //x, y, width, length, starting degrees, added degrees to starting degrees
@@ -168,8 +197,7 @@ public class face extends JComponent implements ActionListener {
         
         // draw the mouth
         g.fillArc(145, 450, 300, 350, 180, 180);
-        
-        // draw the lips
+        // draw the upper lips
         g.setColor(lips);
         g.fillArc(144, 610, 154, 35, 0, 180);
         g.fillArc(295, 610, 150, 35, 0, 180);
@@ -178,31 +206,28 @@ public class face extends JComponent implements ActionListener {
         g.drawArc(144, 610, 154, 35, 0, 180);
         g.drawArc(295, 610, 150, 35, 0, 180);
         
+        // draw the tongue
+        // set the colour as red
+        g.setColor(Color.RED);
+        g.fillOval(200, tongue, 190, 100);
+        g.setColor(Color.BLACK);
+        g.drawOval(200, tongue, 190, 100);
+        
         
         // create the mustache of the face
+        g.setColor(Color.BLACK);
         g.fillOval(260, 572, 40, 40);
         g.fillOval(290, 572, 40, 40);
         // create triangles for the end of the mustache
         int[] triangleA = {270, 270, 200};
-        int[] triangleB = {579, 611, 590};
+        int[] triangleB = {575, 610, mustache};
         // array of X points, array of Y points, number of points
         g.fillPolygon(triangleA, triangleB, 3);
         
-        int[] triangleC = {310, 310, mouseX};
-        int[] triangleD = {575, 611, mouseY};
+        int[] triangleC = {310, 310, 390};
+        int[] triangleD = {572, 612, mustache};
         // array of X points, array of Y points, number of points
         g.fillPolygon(triangleC, triangleD, 3);
-        
-        
-        // create the beard
-        int[] triangleX = {325, 325, 312};
-        int[] triangleY = {725, 725, 775};
-        // array of X points, array of Y points, number of points
-        g.fillPolygon(triangleX, triangleY, 3);
-        
-        g.setColor(Color.yellow);
-        g.fillArc (pacmanX, pacmanY, 100, 100, pacmanAngle, pacmanRotate);
-        
 		
         // GAME DRAWING ENDS HERE
     }
@@ -217,38 +242,56 @@ public class face extends JComponent implements ActionListener {
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
-        // move pacman across the screen
-        pacmanX = pacmanX + 7;
-        
-        // when pacman leaves the screen
-        if (pacmanX > WIDTH){
-            pacmanX = -100;
-        }
-        // set as false when pacman's mouth is closed
-        if (pacmanAngle <= 0){
-            pacmanClose = false;
-        }
-        // 
-        if (pacmanAngle >= 45){
-            pacmanClose = true;
-        }
-        
-        // make pacman eat
-        if (pacmanClose){
-        pacmanRotate += 2;
-        pacmanAngle -= 1;
-        }
-        else {
-            pacmanRotate -= 2;
-            pacmanAngle += 1;
-        }
-        // move the player
-        if (moveUp){
-            pacmanY = pacmanY - 3;
-        }
-        else if (moveDown){
-            pacmanY = pacmanY + 3;
-        }
+        // make the whites of the eyes move from side to side
+    if (whiteRight == 210){
+        whiteRight += 20;
+    }
+    else if (whiteRight == 230){
+        whiteRight -= 30;
+    }
+    else if (whiteRight == 200){
+        whiteRight += 10;
+    }
+    if (whiteLeft == 350){
+        whiteLeft += 20;
+    }
+    else if (whiteLeft == 370){
+        whiteLeft -= 30;
+    }
+    else if (whiteLeft == 340){
+        whiteLeft += 10;
+    }
+    // make the eyebrows move up and down
+    if (eyebrowMove == 150){
+        eyebrowMove -= 100;
+    }
+    else if (eyebrowMove == 50){
+        eyebrowMove += 100;
+    }
+    // make the mustache move up and down
+    if (mustache == 590){
+        mustache +=20;
+    }
+    else if (mustache == 610){
+        mustache -=40;
+    }
+    else if (mustache == 570){
+        mustache +=20;
+    }
+    // make the tongue move up and down
+    if (tongue == 700){
+        tongue += 15;
+    }
+    else if (tongue == 715){
+        tongue -= 15;
+    }
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        preSetup();
+        gameLoop();
+        repaint();
     }
 
     // Used to implement any of the Mouse Actions
@@ -275,14 +318,9 @@ public class face extends JComponent implements ActionListener {
         // if the mouse has moved positions
         @Override
         public void mouseMoved(MouseEvent e) {
-            // if you left click:
-            if (e.getButton() == MouseEvent.BUTTON1){
-            // set the mouse coordinates
-            mouseX = e.getX();
-            mouseY = e.getY();
+
             }
         }
-    }
 
     // Used to implements any of the Keyboard Actions
     private class Keyboard extends KeyAdapter {
@@ -290,37 +328,14 @@ public class face extends JComponent implements ActionListener {
         // if a key has been pressed down
         @Override
         public void keyPressed(KeyEvent e) {
-            // get the key code
-            int keyCode = e.getKeyCode();
-            // which key is being pressed?
-            if (keyCode == KeyEvent.VK_UP){
-                moveUp = true;
-            }
-            else if (keyCode == KeyEvent.VK_DOWN);
-                moveDown = true;
+
         }
 
         // if a key has been released
         @Override
         public void keyReleased(KeyEvent e) {
-            // paste from keyPressed and change booleans of true to false
-            
-            // get the key code
-            int keyCode = e.getKeyCode();
-            // which key is being pressed?
-            if (keyCode == KeyEvent.VK_UP){
-                moveUp = false;
-            }
-            else if (keyCode == KeyEvent.VK_DOWN);
-                moveDown = false;
+ 
         }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        preSetup();
-        gameLoop();
-        repaint();
     }
 
     /**
