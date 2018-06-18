@@ -29,7 +29,7 @@ public class LastAssignment extends JComponent implements ActionListener {
     static final int HEIGHT = 600;
     
     // make the title of the window Shooting Game
-    String title = "Shooting Game";
+    String title = "Space Invaders";
     
     // sets the framerate and delay for our game
     // this calculates the number of milliseconds per frame
